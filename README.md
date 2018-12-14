@@ -47,6 +47,12 @@ Create a `babel` or `.babelrc` file with:
 {"presets": ["@helpscout/zero/babel"]}
 ```
 
+As of version `1.0.0`, Zero is now on `@babel` version 7. Your project may need to install `babel-core@7.0.0-bridge.0`. To do so, add that package to your `package.json`, or run:
+
+```
+npm install --save-dev babel-core@7.0.0-bridge.0
+```
+
 ##### ESlint
 
 Create an `.eslintrc` file with:
