@@ -1,4 +1,4 @@
-const jestConfig = require('@helpscout/zero/jest')
+const { jest: jestConfig } = require('kcd-scripts/config')
 
 module.exports = Object.assign(jestConfig, {
   testURL: 'http://localhost/',
