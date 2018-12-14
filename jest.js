@@ -1,10 +1,9 @@
-const jestConfig = require('kcd-scripts/jest')
+const jestConfig = require('@helpscout/zero/jest')
 
-module.exports = {
-  ...jestConfig,
+module.exports = Object.assign(jestConfig, {
   testURL: 'http://localhost/',
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
-}
+})
