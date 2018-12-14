@@ -11,7 +11,7 @@
   "scripts": {
     "prestart": "node src prestart",
     "add-contributor": "node src contributors add",
-    "build": "node src build",
+    "build": "BABEL_ENV=production babel ./src --out-dir ./dist",
     "lint": "node src lint",
     "format": "node src format",
     "validate": "node src validate",
