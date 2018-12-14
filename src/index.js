@@ -14,7 +14,6 @@ if (cmd && cmd === 'build') {
 if (cmd && cmd === 'prestart') {
   const prestart = require('@helpscout/prestart')
   prestart.sync()
-  return
+} else {
+  require('kcd-scripts/dist/index')
 }
-
-require('kcd-scripts/dist/index')
