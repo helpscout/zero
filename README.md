@@ -33,7 +33,7 @@ Zero comes with a handful of scripts that you can add to your own `package.json`
   "lint": "zero lint",
   "format": "zero format",
   "validate": "zero validate",
-  "precommit": "zero precommit",
+  "precommit": "zero pre-commit",
 }
 ```
 
