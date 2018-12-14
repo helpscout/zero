@@ -11,6 +11,12 @@ if (cmd && cmd === 'build') {
   }
 }
 
+if (cmd && cmd === 'precommit') {
+  console.log()
+  console.log('This command has been changed to "pre-commit"!')
+  console.log()
+}
+
 if (cmd && cmd === 'prestart') {
   const prestart = require('@helpscout/prestart')
   prestart.sync()
