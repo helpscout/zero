@@ -40,7 +40,6 @@
     "np": "3.0.4"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-transform-flow-strip-types": "^7.0.0",
     "@babel/runtime": "7.2.0",
     "@helpscout/prestart": "0.0.9",

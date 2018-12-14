@@ -1,7 +1,6 @@
 {
   "presets": ["kcd-scripts/babel", "react-app"],
   "plugins": [
-    "@babel/plugin-proposal-class-properties",
     "@babel/plugin-transform-flow-strip-types",
     "inline-svg",
     "emotion"
