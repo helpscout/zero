@@ -41,6 +41,7 @@ Commands:
 🤗  contributors    Generates markdown file with all contributors
 💅  format          Formats files with Prettier
 🔍  lint            Lints files with ESLint
+✨  new             Generate a new module
 ☝️  pre-commit      Lints files before staging for commit
 🔑  prestart        Automatically install dependencies before starting
 🚢  release         Publish to npm

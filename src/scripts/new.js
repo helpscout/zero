@@ -1,3 +1,4 @@
+const spawn = require('cross-spawn')
 const fs = require('fs')
 const path = require('path')
 const inquirer = require('inquirer')
@@ -12,34 +13,47 @@ exports.execNew = async () => {
   console.log('Creating a new module\n')
 
   const pwd = process.cwd()
-  const templateFiles = exports.getTemplateFiles()
+  const prompts = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'module_name',
+      message: "Module name? (Don't include @scope)",
+    },
+    {
+      type: 'input',
+      name: 'scope',
+      message: 'Scope? (Press enter to skip)',
+    },
+  ])
 
-  // const prompts = await inquirer.prompt([
-  //   {
-  //     type: 'input',
-  //     name: 'module_name',
-  //     message: "Module name? (Don't include @scope)",
-  //   },
-  //   {
-  //     type: 'input',
-  //     name: 'scope',
-  //     message: 'Scope? (Press enter to skip)',
-  //   },
-  // ])
+  const answers = exports.remapPromptsToAnswers(prompts)
+  const { module_name } = answers
 
-  // const answers = exports.remapPromptsToAnswers(prompts)
+  try {
+    // Create the new directory
+    const dest = path.join(pwd, module_name)
+    const destSrc = path.join(dest, 'src')
+    mkdirp.sync(destSrc)
 
-  const module_name = 'test'
-
-  // Create the new directory
-  const dest = path.join(pwd, module_name)
-  const destSrc = path.join(dest, 'src')
-  mkdirp.sync(destSrc)
-
-  // Generating the new files
-  exports.generateTemplateFiles(destSrc, { module_name: 'z', scope: null })
-
-  // console.log(templateFiles)
+    // Generating the new files
+    console.log('')
+    console.log('🗂', '', 'Generating files...')
+    exports.generateTemplateFiles(dest, answers)
+    console.log('')
+    console.log('🚚', '', 'Installing dependencies...')
+    spawn.sync('npm', ['--prefix', dest, 'install'])
+    console.log('')
+    console.log('✨', '', 'Success!')
+    console.log('Your new module is available at', dest)
+    console.log('')
+    console.log('To start, run:')
+    console.log(`cd ./${module_name}`)
+    console.log('')
+    console.log('Happy Coding!')
+  } catch (err) {
+    console.log('')
+    console.log("Hmm! Zero wasn't able to generate a new module.")
+  }
 }
 
 exports.getTemplateFiles = () => {
@@ -78,7 +92,7 @@ exports.generateTemplateFiles = (dest, rawProps) => {
   })
 
   // Crate the src/index.js file
-  fs.writeFileSync(path.join(srcIndexDest, 'src/index.js'), '')
+  fs.writeFileSync(srcIndexDest, '// Happy Coding!')
   console.log(`Generated ${srcIndexDest}`)
 }
 
