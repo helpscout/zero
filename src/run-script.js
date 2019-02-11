@@ -60,6 +60,7 @@ function spawnScript() {
   }
   console.log('')
   console.log('📦', '', `Zero ${script}...`)
+  console.log('')
 
   const result = spawn.sync(executor, [scriptPath, ...args], {
     stdio: 'inherit',
