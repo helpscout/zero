@@ -16,6 +16,7 @@ This is all thanks to [kcd-scripts](https://github.com/kentcdodds/kcd-scripts), 
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [CLI](#cli)
 - [Extending](#extending)
   - [Babel](#babel)
   - [ESlint](#eslint)
@@ -60,6 +61,20 @@ Zero comes with a handful of scripts that you can add to your own `package.json`
   "validate": "zero validate",
   "precommit": "zero pre-commit",
 }
+```
+
+### CLI
+
+To use Zero as a CLI, install it globally with this command:
+
+```
+npm install -g @helpscout/zero
+```
+
+Alternatively, you can run it with [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)
+
+```
+npx @helpscout/zero
 ```
 
 ## Extending
