@@ -1,38 +1,37 @@
 const path = require('path')
 const spawn = require('cross-spawn')
-const glob = require('glob')
 const pkg = require('../package.json')
 
+/* eslint-disable no-unused-vars */
 const [executor, ignoredBin, script, ...args] = process.argv
+/* eslint-enable no-unused-vars */
+
+const fullMessage = `
+📦  Zero (v${pkg.version})
+
+Usage: zero <command> [--flags]
+
+Commands:
+🛠  build           Builds project with Babel (7)
+📦  bundle          Bundles project into single files with Rollup
+👨‍👩‍👧‍👧  contributors    Generates markdown file with all contributors
+💅  format          Formats files with Prettier
+🔍  lint            Lints files with ESLint
+☝️  pre-commit      Lints files before staging for commit
+🔑  prestart        Automatically install dependencies before starting
+🚚  release         Publish to npm
+🧪  test            Run tests with Jest
+💪  validate        Validates project with lint, tests, and build
+  `.trim()
+
+const logHelpMessage = () => {
+  console.log(`\n${fullMessage}\n`)
+}
 
 if (script) {
   spawnScript()
 } else {
-  const scriptsPath = path.join(__dirname, 'scripts/')
-  const scriptsAvailable = glob.sync(path.join(__dirname, 'scripts', '*'))
-  // `glob.sync` returns paths with unix style path separators even on Windows.
-  // So we normalize it before attempting to strip out the scripts path.
-  const scriptsAvailableMessage = scriptsAvailable
-    .map(path.normalize)
-    .map(s =>
-      s
-        .replace(scriptsPath, '')
-        .replace(/__tests__/, '')
-        .replace(/\.js$/, '')
-    )
-    .filter(Boolean)
-    .join('\n  ')
-    .trim()
-  const fullMessage = `
-
-📦  Zero (v${pkg.version})
-
-Usage: zero [script] [--flags]
-
-Available Scripts:
-  ${scriptsAvailableMessage}
-  `.trim()
-  console.log(`\n${fullMessage}\n`)
+  logHelpMessage()
 }
 
 function getEnv() {
@@ -56,8 +55,12 @@ function spawnScript() {
   const scriptPath = attemptResolve(relativeScriptPath)
 
   if (!scriptPath) {
-    throw new Error(`Unknown script "${script}".`)
+    logHelpMessage()
+    process.exit(0)
   }
+  console.log('')
+  console.log('📦', '', `Zero ${script}...`)
+
   const result = spawn.sync(executor, [scriptPath, ...args], {
     stdio: 'inherit',
     env: getEnv(),

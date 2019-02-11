@@ -29,6 +29,24 @@ This is all thanks to [kcd-scripts](https://github.com/kentcdodds/kcd-scripts), 
 npm install --save-dev @helpscout/zero
 ```
 
+```
+📦  Zero
+
+Usage: zero <command> [--flags]
+
+Commands:
+🛠  build           Builds project with Babel (7)
+📦  bundle          Bundles project into single files with Rollup
+👨‍👩‍👧‍👧  contributors    Generates markdown file with all contributors
+💅  format          Formats files with Prettier
+🔍  lint            Lints files with ESLint
+☝️  pre-commit      Lints files before staging for commit
+🔑  prestart        Automatically install dependencies before starting
+🚢  release         Publish to npm
+🧪  test            Run tests with Jest
+💪  validate        Validates project with lint, tests, and build
+```
+
 ## Usage
 
 Zero comes with a handful of scripts that you can add to your own `package.json` scripts:
