@@ -170,6 +170,8 @@ function writeExtraEntry(name, { cjs, esm }, clean = true) {
   )
 }
 
+const here = p => path.join(__dirname, p)
+
 module.exports = {
   appDirectory,
   envIsSet,
@@ -178,6 +180,7 @@ module.exports = {
   hasFile,
   hasPkgProp,
   hasScript,
+  here,
   ifAnyDep,
   ifDep,
   ifDevDep,

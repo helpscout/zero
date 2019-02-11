@@ -16,7 +16,7 @@ const config = useBuiltinConfig
   ? ['--presets', here('../../config/babelrc.js')]
   : []
 
-const ignore = args.includes('--ignore')
+const ignore = args.includes('--include')
   ? []
   : ['--ignore', '__tests__,__mocks__']
 
