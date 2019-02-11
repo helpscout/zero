@@ -1,4 +1,7 @@
-# 📦 Zero [![Build Status](https://travis-ci.org/helpscout/zero.svg?branch=master)](https://travis-ci.org/helpscout/zero) [![npm version](https://badge.fury.io/js/%40helpscout%2Fzero.svg)](https://badge.fury.io/js/%40helpscout%2Fzero)
+# 📦 Zero
+
+[![Build Status](https://travis-ci.org/helpscout/zero.svg?branch=master)](https://travis-ci.org/helpscout/zero)
+[![npm version](https://badge.fury.io/js/%40helpscout%2Fzero.svg)](https://badge.fury.io/js/%40helpscout%2Fzero)
 
 > Help Scout's zero config scripts
 
@@ -6,14 +9,14 @@ Zero comes with Babel, Rollup, ESLint, Prettier, and Jest - All pre-configured t
 
 This is all thanks to [kcd-scripts](https://github.com/kentcdodds/kcd-scripts), which powers Zero under the hood.
 
-## Table of contents
+## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Installation](#-installation)
-- [Usage](#%F0%9F%95%B9-usage)
-- [Extending](#-extending)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Extending](#extending)
   - [Babel](#babel)
   - [ESlint](#eslint)
   - [Jest](#jest)
