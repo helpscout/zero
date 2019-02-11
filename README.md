@@ -44,7 +44,7 @@ Commands:
 ☝️  pre-commit      Lints files before staging for commit
 🔑  prestart        Automatically install dependencies before starting
 🚢  release         Publish to npm
-🧪  test            Run tests with Jest
+🤞  test            Run tests with Jest
 💪  validate        Validates project with lint, tests, and build
 ```
 
@@ -56,10 +56,12 @@ Zero comes with a handful of scripts that you can add to your own `package.json`
 "scripts": {
   "prestart": "zero prestart",
   "build": "zero build",
-  "lint": "zero lint",
   "format": "zero format",
-  "validate": "zero validate",
+  "lint": "zero lint",
   "precommit": "zero pre-commit",
+  "release": "zero release",
+  "test": "zero test",
+  "validate": "zero validate",
 }
 ```
 
