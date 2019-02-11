@@ -18,6 +18,7 @@
     "lint": "node src lint",
     "format": "node src format",
     "validate": "node src validate",
+    "release": "node src release -- --yolo --no-yarn",
     "pretty": "prettier src/**/*.js --write"
   },
   "husky": {
