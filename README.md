@@ -64,6 +64,10 @@ Zero comes with a handful of scripts that you can add to your own `package.json`
 
 ## Extending
 
+Zero can build, lint, format, and release out-of-the-box!
+
+If you need to personalize Babel, ESLint, or Jest, Zero's got you covered. Add your own adjustments by extending Zero's based configurations.
+
 ### Babel
 
 Create a `babel` or `.babelrc` file with:
