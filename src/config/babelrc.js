@@ -1,7 +1,8 @@
 const browserslist = require('browserslist')
 const semver = require('semver')
 
-const { ifAnyDep, parseEnv, appDirectory, pkg } = require('../utils')
+// const { ifAnyDep, parseEnv, appDirectory, pkg } = require('../utils')
+const { ifAnyDep, parseEnv, appDirectory } = require('../utils')
 
 const { BABEL_ENV, NODE_ENV, BUILD_FORMAT } = process.env
 const isTest = (BABEL_ENV || NODE_ENV) === 'test'
@@ -12,6 +13,10 @@ const isUMD = BUILD_FORMAT === 'umd'
 const isWebpack = parseEnv('BUILD_WEBPACK', false)
 const treeshake = parseEnv('BUILD_TREESHAKE', isRollup || isWebpack)
 const alias = parseEnv('BUILD_ALIAS', isPreact ? { react: 'preact' } : null)
+
+// Forces Node 6 to support async/await
+// const nodeV = 6 || getNodeVersion(pkg)
+const nodeV = 6
 
 // const hasBabelRuntimeDep = Boolean(
 //   pkg.dependencies && pkg.dependencies['@babel/runtime']
@@ -44,7 +49,7 @@ const envTargets = isTest
   ? { node: 'current' }
   : isWebpack || isRollup
   ? { browsers: browsersConfig }
-  : { node: getNodeVersion(pkg) }
+  : { node: nodeV }
 const envOptions = { modules: false, loose: true, targets: envTargets }
 
 module.exports = () => ({
@@ -103,3 +108,4 @@ function getNodeVersion({ engines: { node: nodeVersion = '8' } = {} }) {
   }
   return oldestVersion
 }
+exports.getNodeVersion = getNodeVersion

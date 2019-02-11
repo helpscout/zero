@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// process.argv.push('--presets')
+// process.argv.push(path.resolve(__dirname, './config/babelrc.js'))
+
 const args = process.argv.slice(2)
 const command = args[0]
 const cmd = command && command.toLowerCase()
