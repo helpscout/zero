@@ -47,7 +47,7 @@ Commands:
 🍃  new             Generate a new module
 ✨  pre-commit      Lints files before staging for commit
 🔑  prestart        Automatically install dependencies before starting
-🚚  release         Publish to npm
+🚛  release         Publish to npm
 🤞  test            Run tests with Jest
 📜  type-check      Check types with TypeScript
 💪  validate        Validates project with lint, tests, and build
