@@ -18,8 +18,7 @@
     "lint": "node src lint",
     "format": "node src format",
     "validate": "node src validate",
-    "release": "node src release",
-    "pretty": "prettier src/**/*.js --write"
+    "release": "node src release"
   },
   "husky": {
     "hooks": {
