@@ -33,6 +33,7 @@ Commands:
   pre-commit        Lints files before staging for commit
   prestart          Automatically install dependencies before starting
   release           Publish to npm
+  setup [options]   Sets up tooling in project
   test [options]    Run test with Jest
   type-check        Check types with TypeScript
   validate          Validates project with lint, tests, and build
@@ -46,11 +47,6 @@ Commands:
 - [Installation](#installation)
 - [Usage](#usage)
   - [CLI](#cli)
-- [Options](#options)
-  - [Build](#build)
-  - [Format](#format)
-  - [Lint](#lint)
-  - [Test](#test)
 - [Extending](#extending)
   - [Babel](#babel)
   - [ESlint](#eslint)
@@ -104,34 +100,6 @@ Alternatively, you can run it with [npx](https://medium.com/@maybekatz/introduci
 ```
 npx @helpscout/zero
 ```
-
-## Options
-
-### Build
-
-| Options        | Aliases                           | Description                          |
-| -------------- | --------------------------------- | ------------------------------------ |
-| `--bundle`     | `--browser`, `--rollup`, `--roll` | Bundle with Rollup.                  |
-| `--typescript` | `--tsc`, `--ts`                   | Build with TypeScript.               |
-| `--no-clean`   |                                   | Skips cleaning the `dist` directory. |
-
-### Format
-
-| Options      | Description                           |
-| ------------ | ------------------------------------- |
-| `--no-write` | Does not rewrite files with Prettier. |
-
-### Lint
-
-| Options      | Description                     |
-| ------------ | ------------------------------- |
-| `--no-cache` | Does not use cache with ESLint. |
-
-### Test
-
-| Options      | Description                                  |
-| ------------ | -------------------------------------------- |
-| `--no-watch` | Does not watch when running tests with Jest. |
 
 ## Extending
 
