@@ -170,6 +170,9 @@ function writeExtraEntry(name, { cjs, esm }, clean = true) {
 const here = p => path.join(__dirname, p)
 const there = p => path.resolve(process.cwd(), p)
 
+const tsConfigSrc = () => there('./tsconfig.json')
+const hasTsConfig = () => fs.existsSync(tsConfigSrc())
+
 module.exports = {
   appDirectory,
   envIsSet,
@@ -178,6 +181,7 @@ module.exports = {
   hasFile,
   hasPkgProp,
   hasScript,
+  hasTsConfig,
   here,
   ifAnyDep,
   ifDep,
@@ -192,6 +196,7 @@ module.exports = {
   resolveBin,
   resolveKcdScripts,
   there,
+  tsConfigSrc,
   uniq,
   writeExtraEntry,
 }

@@ -3,7 +3,15 @@ if (process.argv.includes('--browser')) {
 }
 
 const shouldBundle =
-  process.argv.includes('--bundle') || process.argv.includes('--browser')
+  process.argv.includes('--bundle') ||
+  process.argv.includes('--browser') ||
+  process.argv.includes('--rollup') ||
+  process.argv.includes('--roll')
+
+const shouldCompileWithTypeScript =
+  process.argv.includes('--typescript') ||
+  process.argv.includes('--tsc') ||
+  process.argv.includes('--ts')
 
 const bundle = () => {
   console.log('Compiling with Rollup...')
@@ -11,19 +19,14 @@ const bundle = () => {
 }
 
 const build = async () => {
-  const { buildBabel } = require('./babel')
   const { clean } = require('./clean')
 
   clean()
 
-  console.log('Compiling with Babel...')
-
-  try {
-    const result = await buildBabel()
-    process.exit(result)
-  } catch (err) {
-    console.log(err)
-    console.log('Failed to compile with Babel :(')
+  if (shouldCompileWithTypeScript) {
+    require('../compile/typescript').compileTypeScript()
+  } else {
+    require('../compile/babel').compileBabel()
   }
 }
 

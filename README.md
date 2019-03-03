@@ -15,6 +15,10 @@ This is all thanks to [kcd-scripts](https://github.com/kentcdodds/kcd-scripts), 
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Installation](#installation)
+- [Options](#options)
+  - [Build](#build)
+  - [Format](#format)
+  - [Lint](#lint)
 - [Usage](#usage)
   - [CLI](#cli)
 - [Extending](#extending)
@@ -33,21 +37,44 @@ npm install --save-dev @helpscout/zero
 ```
 📦  Zero
 
-Usage: zero <command> [--flags]
+Usage: zero <command> [--options]
 
 Commands:
 🛠  build           Builds project with Babel (7)
 📦  bundle          Bundles project into single files with Rollup
-🤗  contributors    Generates markdown file with all contributors
+😊  contributors    Generates markdown file with all contributors
 💅  format          Formats files with Prettier
 🔍  lint            Lints files with ESLint
 ✨  new             Generate a new module
 ☝️  pre-commit      Lints files before staging for commit
 🔑  prestart        Automatically install dependencies before starting
-🚢  release         Publish to npm
+🚚  release         Publish to npm
 🤞  test            Run tests with Jest
+📜  type-check      Check types with TypeScript
 💪  validate        Validates project with lint, tests, and build
 ```
+
+## Options
+
+### Build
+
+| Options        | Aliases                           | Description                          |
+| -------------- | --------------------------------- | ------------------------------------ |
+| `--bundle`     | `--browser`, `--rollup`, `--roll` | Bundle with Rollup.                  |
+| `--typescript` | `--tsc`, `--ts`                   | Build with TypeScript.               |
+| `--no-clean`   |                                   | Skips cleaning the `dist` directory. |
+
+### Format
+
+| Options      | Aliases | Description                           |
+| ------------ | ------- | ------------------------------------- |
+| `--no-write` |         | Does not rewrite files with Prettier. |
+
+### Lint
+
+| Options      | Aliases | Description                     |
+| ------------ | ------- | ------------------------------- |
+| `--no-cache` |         | Does not use cache with ESLint. |
 
 ## Usage
 

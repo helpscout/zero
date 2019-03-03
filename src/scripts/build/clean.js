@@ -7,6 +7,7 @@ const useSpecifiedOutDir = args.includes('--out-dir')
 exports.clean = () => {
   if (!useSpecifiedOutDir && !args.includes('--no-clean')) {
     console.log(`Cleaning ${fromRoot('dist')}...`)
+    console.log()
     rimraf.sync(fromRoot('dist'))
   }
 }

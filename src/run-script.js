@@ -22,6 +22,7 @@ Commands:
 🔑  prestart        Automatically install dependencies before starting
 🚚  release         Publish to npm
 🤞  test            Run tests with Jest
+📜  type-check      Check types with TypeScript
 💪  validate        Validates project with lint, tests, and build
   `.trim()
 
