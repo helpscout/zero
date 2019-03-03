@@ -17,6 +17,7 @@ Zero comes with Babel, Rollup, ESLint, Prettier, and Jest - All pre-configured t
   - [Build](#build)
   - [Format](#format)
   - [Lint](#lint)
+  - [Test](#test)
 - [Usage](#usage)
   - [CLI](#cli)
 - [Extending](#extending)
@@ -74,6 +75,12 @@ Commands:
 | Options      | Aliases | Description                     |
 | ------------ | ------- | ------------------------------- |
 | `--no-cache` |         | Does not use cache with ESLint. |
+
+### Test
+
+| Options      | Aliases | Description                                  |
+| ------------ | ------- | -------------------------------------------- |
+| `--no-watch` |         | Does not watch when running tests with Jest. |
 
 ## Usage
 
