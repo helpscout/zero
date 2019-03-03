@@ -44,6 +44,7 @@ Commands:
   - [Babel](#babel)
   - [ESlint](#eslint)
   - [Jest](#jest)
+  - [Prettier](#prettier)
 - [Thanks](#thanks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -164,7 +165,7 @@ Create an `.eslintrc` file with:
 
 ### Jest
 
-Create an `jest.config.js` file with:
+Create a `jest.config.js` file with:
 
 ```javascript
 const jestConfig = require('@helpscout/zero/jest')
@@ -177,6 +178,14 @@ module.exports = Object.assign(jestConfig, {
     '\\.(ts|tsx)$': '<rootDir>/node_modules/ts-jest/preprocessor.js',
   },
 })
+```
+
+### Prettier
+
+Create a `.prettierrc.js` file with:
+
+```
+module.exports = require("@helpscout/zero/prettier");
 ```
 
 ## Thanks
