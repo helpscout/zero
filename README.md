@@ -150,7 +150,7 @@ npm install --save-dev babel-core@7.0.0-bridge.0
 
 #### `@babel/runtime`
 
-Zero does **not** include `@babel/runtime`, as it is still being used to compile projects on Babel 6. If you need an ultra-modern Babel 7 ready tool, check out [kcd-scripts](https://github.com/kentcdodds/kcd-scripts).
+Zero **does not use** `@babel/runtime`, as it is still being used to compile projects on Babel 6. If you need an ultra-modern Babel 7 ready tool, check out [kcd-scripts](https://github.com/kentcdodds/kcd-scripts).
 
 #### `babel-plugin-react-app`
 
