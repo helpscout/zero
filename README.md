@@ -110,21 +110,21 @@ npx @helpscout/zero
 
 ### Format
 
-| Options      | Aliases | Description                           |
-| ------------ | ------- | ------------------------------------- |
-| `--no-write` |         | Does not rewrite files with Prettier. |
+| Options      | Description                           |
+| ------------ | ------------------------------------- |
+| `--no-write` | Does not rewrite files with Prettier. |
 
 ### Lint
 
-| Options      | Aliases | Description                     |
-| ------------ | ------- | ------------------------------- |
-| `--no-cache` |         | Does not use cache with ESLint. |
+| Options      | Description                     |
+| ------------ | ------------------------------- |
+| `--no-cache` | Does not use cache with ESLint. |
 
 ### Test
 
-| Options      | Aliases | Description                                  |
-| ------------ | ------- | -------------------------------------------- |
-| `--no-watch` |         | Does not watch when running tests with Jest. |
+| Options      | Description                                  |
+| ------------ | -------------------------------------------- |
+| `--no-watch` | Does not watch when running tests with Jest. |
 
 ## Extending
 
