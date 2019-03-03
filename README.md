@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/helpscout/zero.svg?branch=master)](https://travis-ci.org/helpscout/zero)
 [![npm version](https://badge.fury.io/js/%40helpscout%2Fzero.svg)](https://badge.fury.io/js/%40helpscout%2Fzero)
+![node](https://img.shields.io/badge/node-8.11.3-blue.svg)
+![npm](https://img.shields.io/badge/npm-6.4.1-blue.svg)
 
 > Help Scout's zero config scripts
 
