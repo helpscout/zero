@@ -100,6 +100,19 @@ program
   })
 
 program
+  .command('setup')
+  .description('Sets up tooling in project')
+  .option('babel', 'Adds a .babelrc file')
+  .option('eslint', 'Adds a .eslintrc file')
+  .action(cmd => {
+    logScriptMessage()
+    console.log(`Setting up ${cmd}...`)
+    console.log('')
+
+    require(require.resolve(`./scripts/setup/${cmd}`))
+  })
+
+program
   .command('test')
   .description('Run test with Jest')
   .option('--runInBand', 'Runs tests sequentially. Improves console.logs')
@@ -141,6 +154,12 @@ function getEnv() {
     )
 }
 
+function logScriptMessage() {
+  console.log('')
+  console.log('📦', '', `Zero ${script}...`)
+  console.log('')
+}
+
 function spawnScript(script) {
   const relativeScriptPath = path.join(__dirname, './scripts', script)
   const scriptPath = attemptResolve(relativeScriptPath)
@@ -149,9 +168,8 @@ function spawnScript(script) {
     logHelpMessage()
     process.exit(0)
   }
-  console.log('')
-  console.log('📦', '', `Zero ${script}...`)
-  console.log('')
+
+  logScriptMessage()
 
   const result = spawn.sync(executor, [scriptPath, ...args], {
     stdio: 'inherit',

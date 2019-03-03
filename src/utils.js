@@ -173,6 +173,10 @@ const there = p => path.resolve(process.cwd(), p)
 const tsConfigSrc = () => there('./tsconfig.json')
 const hasTsConfig = () => fs.existsSync(tsConfigSrc())
 
+const writeFileToRoot = (p, content, ...args) => {
+  return fs.writeFileSync(fromRoot(p), content, ...args)
+}
+
 module.exports = {
   appDirectory,
   envIsSet,
@@ -199,4 +203,5 @@ module.exports = {
   tsConfigSrc,
   uniq,
   writeExtraEntry,
+  writeFileToRoot,
 }
