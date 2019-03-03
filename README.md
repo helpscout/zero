@@ -7,8 +7,6 @@
 
 Zero comes with Babel, Rollup, ESLint, Prettier, and Jest - All pre-configured to let you build stuff without fiddling with tooling.
 
-This is all thanks to [kcd-scripts](https://github.com/kentcdodds/kcd-scripts), which powers Zero under the hood.
-
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -25,6 +23,7 @@ This is all thanks to [kcd-scripts](https://github.com/kentcdodds/kcd-scripts), 
   - [Babel](#babel)
   - [ESlint](#eslint)
   - [Jest](#jest)
+- [Thanks](#thanks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -164,3 +163,7 @@ module.exports = Object.assign(jestConfig, {
   },
 })
 ```
+
+## Thanks
+
+Thanks to [kcd-scripts](https://github.com/kentcdodds/kcd-scripts) and [create-react-app](https://github.com/facebook/create-react-app) for the inspiration and code!
