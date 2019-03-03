@@ -14,21 +14,28 @@ It comes with a bunch of modern front-end tools, like Babel, Rollup, ESLint, Pre
 ```
 📦  Zero
 
-Usage: zero <command> [--options]
+zero <command>
+
+Example:
+  zero build
+
+Options:
+  -V, --version     output the version number
+  -h, --help        output usage information
 
 Commands:
-🛠  build           Builds project with Babel, Rollup, or TypeScript
-📦  bundle          Bundles project into single files with Rollup
-😊  contributors    Generates markdown file with all contributors
-💅  format          Formats files with Prettier
-🔍  lint            Lints files with ESLint
-🍃  new             Generate a new module
-✨  pre-commit      Lints files before staging for commit
-🔑  prestart        Automatically install dependencies before starting
-🚛  release         Publish to npm
-🤞  test            Run tests with Jest
-📜  type-check      Check types with TypeScript
-💪  validate        Validates project with lint, tests, and build
+  build [options]   Builds project with Babel, Rollup, or TypeScript
+  bundle [options]  Bundles project into single files with Rollup
+  contributors      Generates markdown file with all contributors
+  format [options]  Formats files with Prettier
+  link [options]    Lints files with ESLint
+  new               Generate a new module
+  pre-commit        Lints files before staging for commit
+  prestart          Automatically install dependencies before starting
+  release           Publish to npm
+  test [options]    Run test with Jest
+  type-check        Check types with TypeScript
+  validate          Validates project with lint, tests, and build
 ```
 
 ## Table of Contents
