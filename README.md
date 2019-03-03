@@ -5,7 +5,9 @@
 
 > Help Scout's zero config scripts
 
-Zero comes with Babel, Rollup, ESLint, Prettier, and Jest - All pre-configured to let you build stuff without fiddling with tooling.
+Zero is a ["zero config"](https://www.google.com/search?ei=eGJ7XPqGG5K_jgS2wYKoCA&q=javascript+zero+config&oq=javascript+zero+config&gs_l=psy-ab.3..0i22i30l2.2204.6555..6634...4.0..0.88.1939.29......0....1..gws-wiz.......0i71j0i131j0j0i67.eDv8lllu1MY) tool designed to make it easy to create, develop, test, build, and publish libraries.
+
+It comes with a bunch of modern front-end tools, like Babel, Rollup, ESLint, Prettier, and Jest - All pre-configured to let you build stuff without fiddling with configuration files, scripts and commands.
 
 ```
 📦  Zero
