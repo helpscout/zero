@@ -7,33 +7,6 @@
 
 Zero comes with Babel, Rollup, ESLint, Prettier, and Jest - All pre-configured to let you build stuff without fiddling with tooling.
 
-## Table of Contents
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Installation](#installation)
-- [Options](#options)
-  - [Build](#build)
-  - [Format](#format)
-  - [Lint](#lint)
-  - [Test](#test)
-- [Usage](#usage)
-  - [CLI](#cli)
-- [Extending](#extending)
-  - [Babel](#babel)
-  - [ESlint](#eslint)
-  - [Jest](#jest)
-- [Thanks](#thanks)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Installation
-
-```
-npm install --save-dev @helpscout/zero
-```
-
 ```
 📦  Zero
 
@@ -52,6 +25,58 @@ Commands:
 🤞  test            Run tests with Jest
 📜  type-check      Check types with TypeScript
 💪  validate        Validates project with lint, tests, and build
+```
+
+## Table of Contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Options](#options)
+  - [Build](#build)
+  - [Format](#format)
+  - [Lint](#lint)
+  - [Test](#test)
+  - [CLI](#cli)
+- [Extending](#extending)
+  - [Babel](#babel)
+  - [ESlint](#eslint)
+  - [Jest](#jest)
+- [Thanks](#thanks)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Installation
+
+Add Zero to your project with this command:
+
+```
+npm install --save-dev @helpscout/zero
+```
+
+Or globally with:
+
+```
+npm install -g @helpscout/zero
+```
+
+## Usage
+
+Zero comes with a handful of scripts that you can add to your own `package.json` scripts:
+
+```json
+"scripts": {
+  "prestart": "zero prestart",
+  "build": "zero build",
+  "format": "zero format",
+  "lint": "zero lint",
+  "precommit": "zero pre-commit",
+  "release": "zero release",
+  "test": "zero test",
+  "validate": "zero validate",
+}
 ```
 
 ## Options
@@ -81,23 +106,6 @@ Commands:
 | Options      | Aliases | Description                                  |
 | ------------ | ------- | -------------------------------------------- |
 | `--no-watch` |         | Does not watch when running tests with Jest. |
-
-## Usage
-
-Zero comes with a handful of scripts that you can add to your own `package.json` scripts:
-
-```json
-"scripts": {
-  "prestart": "zero prestart",
-  "build": "zero build",
-  "format": "zero format",
-  "lint": "zero lint",
-  "precommit": "zero pre-commit",
-  "release": "zero release",
-  "test": "zero test",
-  "validate": "zero validate",
-}
-```
 
 ### CLI
 
