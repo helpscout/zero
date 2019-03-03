@@ -40,7 +40,7 @@ npm install --save-dev @helpscout/zero
 Usage: zero <command> [--options]
 
 Commands:
-🛠  build           Builds project with Babel (7)
+🛠  build           Builds project with Babel, Rollup, or TypeScript
 📦  bundle          Bundles project into single files with Rollup
 😊  contributors    Generates markdown file with all contributors
 💅  format          Formats files with Prettier
