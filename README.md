@@ -34,12 +34,12 @@ Commands:
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [CLI](#cli)
 - [Options](#options)
   - [Build](#build)
   - [Format](#format)
   - [Lint](#lint)
   - [Test](#test)
-  - [CLI](#cli)
 - [Extending](#extending)
   - [Babel](#babel)
   - [ESlint](#eslint)
@@ -80,6 +80,20 @@ Zero comes with a handful of scripts that you can add to your own `package.json`
 }
 ```
 
+### CLI
+
+To use Zero as a CLI, install it globally, then run this command:
+
+```
+zero
+```
+
+Alternatively, you can run it with [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)
+
+```
+npx @helpscout/zero
+```
+
 ## Options
 
 ### Build
@@ -107,20 +121,6 @@ Zero comes with a handful of scripts that you can add to your own `package.json`
 | Options      | Aliases | Description                                  |
 | ------------ | ------- | -------------------------------------------- |
 | `--no-watch` |         | Does not watch when running tests with Jest. |
-
-### CLI
-
-To use Zero as a CLI, install it globally with this command:
-
-```
-npm install -g @helpscout/zero
-```
-
-Alternatively, you can run it with [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)
-
-```
-npx @helpscout/zero
-```
 
 ## Extending
 
