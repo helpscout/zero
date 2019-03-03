@@ -168,6 +168,7 @@ function writeExtraEntry(name, { cjs, esm }, clean = true) {
 }
 
 const here = p => path.join(__dirname, p)
+const there = p => path.resolve(process.cwd(), p)
 
 module.exports = {
   appDirectory,
@@ -190,6 +191,7 @@ module.exports = {
   pkg,
   resolveBin,
   resolveKcdScripts,
+  there,
   uniq,
   writeExtraEntry,
 }
