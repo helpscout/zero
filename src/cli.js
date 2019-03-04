@@ -105,11 +105,15 @@ program
   .option('babel', 'Adds a .babelrc file')
   .option('eslint', 'Adds a .eslintrc file')
   .action(cmd => {
-    logScriptMessage()
-    console.log(`Setting up ${cmd}...`)
-    console.log('')
+    if (typeof cmd !== 'string') {
+      cmd.outputHelp()
+      return
+    }
+    // logScriptMessage()
+    // console.log(`Setting up ${cmd}...`)
+    // console.log('')
 
-    require(require.resolve(`./scripts/setup/${cmd}`))
+    // require(require.resolve(`./scripts/setup/${cmd}`))
   })
 
 program
