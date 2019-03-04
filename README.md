@@ -35,7 +35,7 @@ Commands:
   release           Publish to npm
   setup [options]   Sets up tooling in project
   test [options]    Run test with Jest
-  type-check        Check types with TypeScript
+  typecheck         Check types with TypeScript
   validate          Validates project with lint, tests, and build
 ```
 

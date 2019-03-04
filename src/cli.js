@@ -123,11 +123,11 @@ program
   })
 
 program
-  .command('type-check')
+  .command('typecheck')
   .description('Check types with TypeScript')
   .allowUnknownOption()
   .action(() => {
-    spawnScript('type-check')
+    spawnScript('typecheck')
   })
 
 program
