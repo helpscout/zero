@@ -109,11 +109,11 @@ program
       cmd.outputHelp()
       return
     }
-    // logScriptMessage()
-    // console.log(`Setting up ${cmd}...`)
-    // console.log('')
+    logScriptMessage()
+    console.log(`Setting up ${cmd}...`)
+    console.log('')
 
-    // require(require.resolve(`./scripts/setup/${cmd}`))
+    require(require.resolve(`./scripts/setup/${cmd}`))
   })
 
 program
