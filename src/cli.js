@@ -59,12 +59,20 @@ program
   })
 
 program
-  .command('link')
+  .command('lint')
   .description('Lints files with ESLint')
   .option('--no-cache', 'Do not use cache for linting')
   .allowUnknownOption()
   .action(() => {
     spawnScript('format')
+  })
+
+program
+  .command('link')
+  .description('Links a project as a local dependency')
+  .allowUnknownOption()
+  .action(() => {
+    spawnScript('link')
   })
 
 program

@@ -177,8 +177,17 @@ const writeFileToRoot = (p, content, ...args) => {
   return fs.writeFileSync(fromRoot(p), content, ...args)
 }
 
+const isDebug = process.argv.includes('--debug')
+
+const dlog = (args1, args2 = '') => {
+  if (isDebug) {
+    console.log(`[DEBUG]`, args1, args2)
+  }
+}
+
 module.exports = {
   appDirectory,
+  dlog,
   envIsSet,
   fromRoot,
   getConcurrentlyArgs,
