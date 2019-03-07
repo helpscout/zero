@@ -1,6 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
+const spawn = require('cross-spawn')
+const { exec } = require('child_process')
 const { appDirectory, dlog, pkg } = require('../../utils')
 
 const root = process.env.HOME
@@ -11,9 +13,7 @@ exports.setupRootDirectory = () => {
   dlog(`Setting up ${modulesDir}...`)
   if (!fs.existsSync(modulesDir)) {
     mkdirp.sync(modulesDir)
-    if (isDebug) {
-      dlog(`Created ${modulesDir}`)
-    }
+    dlog(`Created ${modulesDir}`)
   }
 }
 
@@ -50,15 +50,15 @@ exports.linkDistDir = () => {
   const dest = exports.getPackageDirPath()
   const distDir = exports.getDistDir()
 
-  if (fs.existsSync(distDir)) {
-    dlog(`${distDir} exists`)
-    dlog(`Deleting ${distDir}...`)
-    fs.unlinkSync(distDir)
-  }
+  // if (fs.existsSync(distDir)) {
+  //   dlog(`${distDir} exists`)
+  //   dlog(`Deleting ${distDir}...`)
+  //   fs.unlinkSync(distDir)
+  // }
 
   dlog(`Symlinking ${target} to ${dest}...`)
   // TODO! OMG! REMOVE THIS! DO DIST FOR REAL!
-  fs.symlinkSync(target, `${dest}/dist`)
+  fs.symlinkSync(target, dest)
 }
 
 exports.createLink = () => {
@@ -73,7 +73,8 @@ exports.createLink = () => {
     dlog('package.json found')
     exports.setupRootDirectory()
 
-    exports.createLinkDir()
+    dlog(exports.getPackageDirPath())
+    // exports.createLinkDir()
     // exports.createLinkDistDir()
 
     exports.linkDistDir()
@@ -94,7 +95,39 @@ exports.getReferenceDir = ref => {
   return path.join(modulesDir, reference)
 }
 
-exports.referenceLink = () => {
+exports.symlinkContents = async (target, dest) => {
+  try {
+    dlog(`Symlinking content...`)
+
+    if (!fs.existsSync(dest)) {
+      dlog(`Target ${dest} not found. Creating...`)
+      mkdirp(dest)
+    } else {
+      dlog(`Found dest: ${dest}`)
+    }
+
+    dlog('Executing symlink command...')
+    dlog(`ln -sf ${path.join(target, '/*')} ${dest}`)
+    // const result = spawn.sync('ln', ['-sf', path.join(target, '/*'), dest], {
+    //   stdio: 'inherit',
+    // })
+
+    exec(`ln -sf ${path.join(target, '/*')} ${dest}`, err => {
+      if (err) {
+        dlog('Symlink failed')
+        return Promise.reject(err)
+      } else {
+        dlog('Symlink complete')
+        return Promise.resolve(0)
+      }
+    })
+  } catch (err) {
+    dlog('Symlink failed')
+    return Promise.reject(err)
+  }
+}
+
+exports.referenceLink = async () => {
   const args = process.argv.slice(2)
   const [ref] = args
   const refDir = exports.getReferenceDir(ref)
@@ -111,24 +144,28 @@ exports.referenceLink = () => {
 
   console.log(`Referencing link for ${ref}...`)
 
-  dlog(refDir)
   if (!fs.existsSync(refDir)) {
     dlog(`Could not locate ${refDir}`)
     console.log(`No link set up for ${ref}. Try running zero link`)
     return
   }
 
-  dlog(`Found ${refDir}`)
+  dlog(`Found target: ${refDir}`)
 
   // look for reference directory within .zero/node_modules
   // TODO: SERIOUSLY, REMOVE HARD CODED /dist
-  const target = path.join(refDir, '/dist')
-  const dest = path.join(appDirectory, '/node_modules/', ref, '/dist')
+  const target = refDir
+  const dest = path.join(appDirectory, '/node_modules/', ref)
 
-  if (fs.existsSync(dest)) {
-    dlog('Deleting previous reference', dest)
-    fs.unlinkSync(dest)
+  try {
+    await exports.symlinkContents(target, dest)
+  } catch (err) {
+    dlog(err)
   }
+  // if (fs.existsSync(dest)) {
+  //   dlog('Deleting previous reference', dest)
+  //   fs.unlinkSync(dest)
+  // }
 
-  fs.symlinkSync(target, dest)
+  // fs.symlinkSync(target, dest)
 }
