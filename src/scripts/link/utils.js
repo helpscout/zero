@@ -26,7 +26,7 @@ exports.linkDistDir = async () => {
   const target = exports.getAppDistBasePath()
   const dest = exports.getPackageDirPath()
 
-  await symlinkContents(target, dest)
+  return symlinkContents(target, dest)
 }
 
 exports.createLink = async () => {
@@ -41,8 +41,8 @@ exports.createLink = async () => {
     dlog('package.json found')
     exports.setupRootDirectory()
 
-    dlog(exports.getPackageDirPath())
-    exports.linkDistDir()
+    dlog(`Located ${exports.getPackageDirPath()}`)
+    await exports.linkDistDir()
 
     console.log(`Successfully linked ${pkg.name}!`)
   } catch (err) {
