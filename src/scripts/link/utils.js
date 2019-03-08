@@ -1,17 +1,17 @@
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
-const { appDirectory, dlog, pkg, symlinkContents } = require('../../utils')
+const { appDirectory, debugLog, pkg, symlinkContents } = require('../../utils')
 
 const root = process.env.HOME
 const rootDir = path.join(root, '.zero')
 const modulesDir = path.join(rootDir, 'node_modules')
 
 exports.setupRootDirectory = () => {
-  dlog(`Setting up ${modulesDir}...`)
+  debugLog(`Setting up ${modulesDir}...`)
   if (!fs.existsSync(modulesDir)) {
     mkdirp.sync(modulesDir)
-    dlog(`Created ${modulesDir}`)
+    debugLog(`Created ${modulesDir}`)
   }
 }
 
@@ -31,17 +31,17 @@ exports.linkDistDir = async () => {
 
 exports.createLink = async () => {
   if (!pkg) {
-    dlog('No package.json found')
+    debugLog('No package.json found')
     console.log("Could not find project's package.json")
     process.exit(0)
   }
 
   try {
     console.log(`Setting up link for ${pkg.name}...`)
-    dlog('package.json found')
+    debugLog('package.json found')
     exports.setupRootDirectory()
 
-    dlog(`Located ${exports.getPackageDirPath()}`)
+    debugLog(`Located ${exports.getPackageDirPath()}`)
     await exports.linkDistDir()
 
     console.log(`Successfully linked ${pkg.name}!`)
@@ -69,19 +69,19 @@ exports.referenceLink = async () => {
   }
 
   if (!ref) {
-    dlog('No reference defined')
+    debugLog('No reference defined')
     return
   }
 
   console.log(`Referencing link for ${ref}...`)
 
   if (!fs.existsSync(refDir)) {
-    dlog(`Could not locate ${refDir}`)
+    debugLog(`Could not locate ${refDir}`)
     console.log(`No link set up for ${ref}. Try running zero link`)
     return
   }
 
-  dlog(`Found target: ${refDir}`)
+  debugLog(`Found target: ${refDir}`)
 
   const target = refDir
   const dest = path.join(appDirectory, '/node_modules/', ref)
@@ -89,6 +89,6 @@ exports.referenceLink = async () => {
   try {
     await symlinkContents(target, dest)
   } catch (err) {
-    dlog(err)
+    debugLog(err)
   }
 }

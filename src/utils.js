@@ -180,9 +180,9 @@ const writeFileToRoot = (p, content, ...args) => {
 
 const isDebug = process.argv.includes('--debug')
 
-const dlog = (args1, args2 = '') => {
+const debugLog = (...args) => {
   if (isDebug) {
-    console.log(`[DEBUG]`, args1, args2)
+    console.log(...[`[DEBUG]`, ...args])
   }
 }
 
@@ -191,21 +191,21 @@ const symlink = async (target, dest) => {
     const cmd = `ln -sf ${target} ${dest}`
 
     if (!fs.existsSync(dest)) {
-      dlog(`${dest} not found.`)
-      dlog(`Creating ${dest}...`)
+      debugLog(`${dest} not found.`)
+      debugLog(`Creating ${dest}...`)
       mkdirp.sync(dest)
     }
 
-    dlog('Symlinking...')
-    dlog('Executing command...')
-    dlog(cmd)
+    debugLog('Symlinking...')
+    debugLog('Executing command...')
+    debugLog(cmd)
 
     exec(cmd, err => {
       if (err) {
-        dlog('Symlink failed')
+        debugLog('Symlink failed')
         return Promise.reject(err)
       } else {
-        dlog('Symlink complete')
+        debugLog('Symlink complete')
         return Promise.resolve(0)
       }
     })
@@ -218,14 +218,14 @@ const symlinkContents = async (target, dest) => {
   try {
     await symlink(path.join(target, '/*'), dest)
   } catch (err) {
-    dlog('Symlink failed')
+    debugLog('Symlink failed')
     return Promise.reject(err)
   }
 }
 
 module.exports = {
   appDirectory,
-  dlog,
+  debugLog,
   envIsSet,
   fromRoot,
   getConcurrentlyArgs,
