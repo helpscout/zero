@@ -3,7 +3,7 @@ const path = require('path')
 const mkdirp = require('mkdirp')
 const spawn = require('cross-spawn')
 const { exec } = require('child_process')
-const { appDirectory, dlog, pkg } = require('../../utils')
+const { appDirectory, dlog, pkg, symlinkContents } = require('../../utils')
 
 const root = process.env.HOME
 const rootDir = path.join(root, '.zero')
@@ -17,51 +17,21 @@ exports.setupRootDirectory = () => {
   }
 }
 
-exports.getPackageDirPath = () => path.join(modulesDir, pkg.name)
-
-exports.createLinkDir = () => {
-  const packageDirPath = exports.getPackageDirPath()
-  mkdirp.sync(packageDirPath)
-  dlog(`Created ${packageDirPath}`)
-}
-
-exports.createLinkDistDir = () => {
-  const distDir = exports.getDistDir()
-  if (distDir) {
-    dlog(`Creating ${distDir}...`)
-    mkdirp.sync(distDir)
-  }
+exports.getPackageDirPath = () => {
+  return path.join(modulesDir, pkg.name, path.dirname(pkg.main))
 }
 
 exports.getAppDistBasePath = () =>
   path.join(appDirectory, path.dirname(pkg.main))
 
-exports.getDistDir = () => {
-  const { main } = pkg
-  if (!main) {
-    dlog('No main in package.json')
-    return
-  }
-  return path.join(exports.getPackageDirPath(), path.dirname(main))
-}
-
-exports.linkDistDir = () => {
+exports.linkDistDir = async () => {
   const target = exports.getAppDistBasePath()
   const dest = exports.getPackageDirPath()
-  const distDir = exports.getDistDir()
 
-  // if (fs.existsSync(distDir)) {
-  //   dlog(`${distDir} exists`)
-  //   dlog(`Deleting ${distDir}...`)
-  //   fs.unlinkSync(distDir)
-  // }
-
-  dlog(`Symlinking ${target} to ${dest}...`)
-  // TODO! OMG! REMOVE THIS! DO DIST FOR REAL!
-  fs.symlinkSync(target, dest)
+  await symlinkContents(target, dest)
 }
 
-exports.createLink = () => {
+exports.createLink = async () => {
   if (!pkg) {
     dlog('No package.json found')
     console.log("Could not find project's package.json")
@@ -74,14 +44,9 @@ exports.createLink = () => {
     exports.setupRootDirectory()
 
     dlog(exports.getPackageDirPath())
-    // exports.createLinkDir()
-    // exports.createLinkDistDir()
-
     exports.linkDistDir()
-    console.log(`Successfully linked ${pkg.name}!`)
 
-    // TODO! OMG! REMOVE THIS! DO DIST FOR REAL!
-    // fs.symlinkSync(target, `${dest}/dist`)
+    console.log(`Successfully linked ${pkg.name}!`)
   } catch (err) {
     console.log(err)
     process.exit(1)
@@ -93,38 +58,6 @@ exports.getReferenceDir = ref => {
   const reference = ref || args[0]
 
   return path.join(modulesDir, reference)
-}
-
-exports.symlinkContents = async (target, dest) => {
-  try {
-    dlog(`Symlinking content...`)
-
-    if (!fs.existsSync(dest)) {
-      dlog(`Target ${dest} not found. Creating...`)
-      mkdirp(dest)
-    } else {
-      dlog(`Found dest: ${dest}`)
-    }
-
-    dlog('Executing symlink command...')
-    dlog(`ln -sf ${path.join(target, '/*')} ${dest}`)
-    // const result = spawn.sync('ln', ['-sf', path.join(target, '/*'), dest], {
-    //   stdio: 'inherit',
-    // })
-
-    exec(`ln -sf ${path.join(target, '/*')} ${dest}`, err => {
-      if (err) {
-        dlog('Symlink failed')
-        return Promise.reject(err)
-      } else {
-        dlog('Symlink complete')
-        return Promise.resolve(0)
-      }
-    })
-  } catch (err) {
-    dlog('Symlink failed')
-    return Promise.reject(err)
-  }
 }
 
 exports.referenceLink = async () => {
@@ -152,20 +85,12 @@ exports.referenceLink = async () => {
 
   dlog(`Found target: ${refDir}`)
 
-  // look for reference directory within .zero/node_modules
-  // TODO: SERIOUSLY, REMOVE HARD CODED /dist
   const target = refDir
   const dest = path.join(appDirectory, '/node_modules/', ref)
 
   try {
-    await exports.symlinkContents(target, dest)
+    await symlinkContents(target, dest)
   } catch (err) {
     dlog(err)
   }
-  // if (fs.existsSync(dest)) {
-  //   dlog('Deleting previous reference', dest)
-  //   fs.unlinkSync(dest)
-  // }
-
-  // fs.symlinkSync(target, dest)
 }

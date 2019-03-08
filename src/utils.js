@@ -185,6 +185,43 @@ const dlog = (args1, args2 = '') => {
   }
 }
 
+const symlink = async (target, dest) => {
+  try {
+    const cmd = `ln -sf ${target} ${dest}`
+
+    if (!fs.existsSync(dest)) {
+      dlog(`${dest} not found.`)
+      dlog(`Creating ${dest}...`)
+      mkdirp.sync(dest)
+    }
+
+    dlog('Symlinking...')
+    dlog('Executing command...')
+    dlog(cmd)
+
+    exec(cmd, err => {
+      if (err) {
+        dlog('Symlink failed')
+        return Promise.reject(err)
+      } else {
+        dlog('Symlink complete')
+        return Promise.resolve(0)
+      }
+    })
+  } catch (err) {
+    return Promise.reject(err)
+  }
+}
+
+const symlinkContents = async (target, dest) => {
+  try {
+    await exports.symlink(path.join(target, '/*'), dest)
+  } catch (err) {
+    dlog('Symlink failed')
+    return Promise.reject(err)
+  }
+}
+
 module.exports = {
   appDirectory,
   dlog,
@@ -208,6 +245,8 @@ module.exports = {
   pkg,
   resolveBin,
   resolveKcdScripts,
+  symlink,
+  symlinkContents,
   there,
   tsConfigSrc,
   uniq,
