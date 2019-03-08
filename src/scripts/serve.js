@@ -27,7 +27,6 @@ const buildFile = async (type, path) => {
           return path
         })
       },
-      stdio: 'ignore',
     })
     log('Compiled', path)
 
@@ -60,7 +59,7 @@ const serve = async () => {
   log(`Watching ${targetDir}`)
 
   log(`Setting up link for ${pkg.name}...`)
-  await createLink({ verbose: false })
+  // await createLink({ verbose: false })
 
   log('\nReady!\n')
 

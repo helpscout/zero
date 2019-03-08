@@ -16,11 +16,10 @@ exports.setupRootDirectory = () => {
 }
 
 exports.getPackageDirPath = () => {
-  return path.join(modulesDir, pkg.name, path.dirname(pkg.main))
+  return path.join(modulesDir, pkg.name)
 }
 
-exports.getAppDistBasePath = () =>
-  path.join(appDirectory, path.dirname(pkg.main))
+exports.getAppDistBasePath = () => appDirectory
 
 exports.linkDistDir = async () => {
   const target = exports.getAppDistBasePath()
