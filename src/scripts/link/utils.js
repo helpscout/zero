@@ -1,8 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
-const spawn = require('cross-spawn')
-const { exec } = require('child_process')
 const { appDirectory, dlog, pkg, symlinkContents } = require('../../utils')
 
 const root = process.env.HOME

@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { exec } = require('child_process')
 const rimraf = require('rimraf')
 const mkdirp = require('mkdirp')
 const arrify = require('arrify')
@@ -215,7 +216,7 @@ const symlink = async (target, dest) => {
 
 const symlinkContents = async (target, dest) => {
   try {
-    await exports.symlink(path.join(target, '/*'), dest)
+    await symlink(path.join(target, '/*'), dest)
   } catch (err) {
     dlog('Symlink failed')
     return Promise.reject(err)
