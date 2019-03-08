@@ -143,6 +143,14 @@ program
   })
 
 program
+  .command('unlink')
+  .description('Unlinks a project as a local dependency')
+  .allowUnknownOption()
+  .action(() => {
+    spawnScript('unlink')
+  })
+
+program
   .command('validate')
   .description('Validates project with lint, tests, and build')
   .allowUnknownOption()
