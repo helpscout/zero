@@ -108,6 +108,13 @@ program
   })
 
 program
+  .command('serve')
+  .allowUnknownOption()
+  .action(() => {
+    spawnScript('serve')
+  })
+
+program
   .command('setup')
   .description('Sets up tooling in project')
   .option('babel', 'Adds a .babelrc file')
