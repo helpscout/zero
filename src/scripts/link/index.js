@@ -4,8 +4,7 @@ const args = process.argv.slice(2)
 const [ref] = args
 
 const link = () => {
-  // TODO: Make this debug flag better
-  if (!ref || ref === '--debug') {
+  if (!ref || ref.indexOf('--') <= 0) {
     createLink()
   } else {
     referenceLink()
