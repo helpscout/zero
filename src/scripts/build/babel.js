@@ -5,7 +5,14 @@ const { hasPkgProp, resolveBin, hasFile } = require('../../utils')
 const args = process.argv.slice(2)
 const here = p => path.join(__dirname, p)
 
-exports.buildBabel = async () => {
+const defaultOptions = {
+  remapArgs: args => args,
+  stdio: 'inherit',
+}
+
+exports.buildBabel = async (options = {}) => {
+  const { remapArgs, stdio } = { ...defaultOptions, ...options }
+
   try {
     const useBuiltinConfig =
       !args.includes('--presets') &&
@@ -32,17 +39,22 @@ exports.buildBabel = async () => {
       ? []
       : ['--extensions', '.js,.jsx,.ts,.tsx']
 
+    const babelArgs = [
+      ...outDir,
+      ...copyFiles,
+      ...ignore,
+      ...config,
+      ...extensions,
+      'src',
+    ].concat(args)
+
+    const remappedArgs = remapArgs(babelArgs)
+    const babelExecArgs = Array.isArray(remappedArgs) ? remappedArgs : babelArgs
+
     const result = spawn.sync(
       resolveBin('@babel/cli', { executable: 'babel' }),
-      [
-        ...outDir,
-        ...copyFiles,
-        ...ignore,
-        ...config,
-        ...extensions,
-        'src',
-      ].concat(args),
-      { stdio: 'inherit' }
+      babelExecArgs,
+      { stdio }
     )
 
     if (result.status) {

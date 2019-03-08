@@ -70,6 +70,7 @@ program
 program
   .command('link')
   .description('Links a project as a local dependency')
+  .option('--clean', 'Deletes previous link before creating')
   .allowUnknownOption()
   .action(() => {
     spawnScript('link')
