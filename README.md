@@ -32,6 +32,7 @@ Commands:
   new               Generate a new module
   pre-commit        Lints files before staging for commit
   prestart          Automatically install dependencies before starting
+  proxy             Serves a browser proxy connected with proxypack
   release           Publish to npm
   setup [options]   Sets up tooling in project
   test [options]    Run test with Jest
