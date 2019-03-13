@@ -59,7 +59,7 @@ program
   })
 
 program
-  .command('link')
+  .command('lint')
   .description('Lints files with ESLint')
   .option('--no-cache', 'Do not use cache for linting')
   .allowUnknownOption()
