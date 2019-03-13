@@ -92,6 +92,14 @@ program
   })
 
 program
+  .command('proxy')
+  .description('Serves a browser proxy connected with proxypack')
+  .allowUnknownOption()
+  .action(() => {
+    spawnScript('proxy')
+  })
+
+program
   .command('release')
   .description('Publish to npm')
   .allowUnknownOption()
@@ -169,7 +177,7 @@ function spawnScript(script) {
   const scriptPath = attemptResolve(relativeScriptPath)
 
   if (!scriptPath) {
-    logHelpMessage()
+    program.outputHelp()
     process.exit(0)
   }
 
