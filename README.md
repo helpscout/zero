@@ -28,7 +28,7 @@ Commands:
   bundle [options]  Bundles project into single files with Rollup
   contributors      Generates markdown file with all contributors
   format [options]  Formats files with Prettier
-  link [options]    Lints files with ESLint
+  lint [options]    Lints files with ESLint
   new               Generate a new module
   pre-commit        Lints files before staging for commit
   prestart          Automatically install dependencies before starting
