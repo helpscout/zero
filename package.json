@@ -107,7 +107,7 @@
     "lodash.template": "4.5.0",
     "lodash": "^4.17.15",
     "mkdirp": "0.5.1",
-    "np": "5.1.2",
+    "np": "4.0.2",
     "prettier": "1.18.2",
     "react-app-polyfill": "1.0.4",
     "read-pkg-up": "7.0.0",
